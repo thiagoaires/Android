@@ -5,12 +5,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.agenda.R;
 import com.example.agenda.dao.StudentDAO;
+import com.example.agenda.model.Student;
+
+import java.util.List;
 
 public class listStudentActivity extends AppCompatActivity {
 
@@ -23,6 +29,9 @@ public class listStudentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lists_students);
 
         setTitle(TITLE_APPBAR);
+
+        dao.save(new Student("thiago", "maka@gmail.com", "54464"));
+        dao.save(new Student("aires", "maka@gmail.com", "54464"));
 
     }
 
@@ -38,6 +47,21 @@ public class listStudentActivity extends AppCompatActivity {
         ListView listStudentsView = findViewById(R.id.activity_list_students_listview);
 
         listStudentsView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dao.getAll()));
+
+        final List<Student> allStudents = dao.getAll();
+
+        listStudentsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Student currentStudent = allStudents.get(position);
+                Intent goToFormActivity = new Intent(listStudentActivity.this, formStudentActivity.class);
+                goToFormActivity.putExtra("student", currentStudent);
+                startActivity(goToFormActivity);
+
+            }
+        });
+
 
         configureFABNewStudent();
     }
