@@ -5,9 +5,10 @@ import android.support.annotation.NonNull;
 import java.io.Serializable;
 
 public class Student implements Serializable {
-    private final String name;
-    private final String mail;
-    private final String phone;
+    private int id = 0;
+    private String name;
+    private String mail;
+    private String phone;
 
     public Student(String name, String mail, String phone) {
         this.name = name;
@@ -27,9 +28,29 @@ public class Student implements Serializable {
         return phone;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @NonNull
     @Override
     public String toString() {
         return name;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 }

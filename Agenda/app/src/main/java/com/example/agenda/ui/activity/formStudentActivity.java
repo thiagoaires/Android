@@ -12,14 +12,13 @@ import com.example.agenda.R;
 import com.example.agenda.dao.StudentDAO;
 import com.example.agenda.model.Student;
 
-import java.io.Serializable;
-
 public class formStudentActivity extends AppCompatActivity {
 
     public static final String TITLE_APPBAR = "Novo aluno";
     private EditText inputName;
     private EditText inputMail;
     private EditText inputPhone;
+    private Student student;
     final StudentDAO dao = new StudentDAO();
 
     @Override
@@ -35,10 +34,9 @@ public class formStudentActivity extends AppCompatActivity {
 
         Intent listData = getIntent();
 
-        Student student = (Student) listData.getSerializableExtra("student");
+        student = (Student) listData.getSerializableExtra("student");
 
         Log.i("gettt", "onCreate: " + student.getName()+ student.getPhone() +  student.getMail());
-
 
         inputName.setText(student.getName());
         inputMail.setText(student.getMail());
@@ -54,9 +52,9 @@ public class formStudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Student createdStudent = getStudent();
-
-                saveStudent(createdStudent);
+                fillStudent();
+                dao.save(student);
+                finish();
             }
         });
     }
@@ -73,12 +71,14 @@ public class formStudentActivity extends AppCompatActivity {
         finish();
     }
 
-    private Student getStudent() {
+    private void fillStudent() {
         String studentName = inputName.getText().toString();
         String studentMail = inputMail.getText().toString();
         String studentPhone = inputPhone.getText().toString();
 
-        return new Student(studentName, studentMail, studentPhone);
+        student.setName(studentName);
+        student.setMail(studentMail);
+        student.setPhone(studentPhone);
     }
 }
 
