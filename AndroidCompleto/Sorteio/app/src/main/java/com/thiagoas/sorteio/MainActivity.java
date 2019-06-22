@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -16,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void sortearNumero(View view){
         TextView textoResultado = findViewById(R.id.textoResultado);
+        int numero = new Random().nextInt(10);
 
-        textoResultado.setText("numero selecionado é");
+        textoResultado.setText("numero selecionado é? " + numero);
     }
 }
