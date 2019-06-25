@@ -14,13 +14,13 @@
         android:layout_marginBottom="29dp"
         android:text="Escolha do App"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/imageResult"
+        app:layout_constraintBottom_toTopOf="@+id/imageResultado"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageResult"
+        android:id="@+id/imageResultado"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="32dp"
@@ -36,9 +36,9 @@
         android:layout_marginTop="32dp"
         android:text="Faça sua Escolha"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toEndOf="@+id/imageResult"
-        app:layout_constraintStart_toStartOf="@+id/imageResult"
-        app:layout_constraintTop_toBottomOf="@+id/imageResult" />
+        app:layout_constraintEnd_toEndOf="@+id/imageResultado"
+        app:layout_constraintStart_toStartOf="@+id/imageResultado"
+        app:layout_constraintTop_toBottomOf="@+id/imageResultado" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -46,6 +46,7 @@
         android:layout_height="120dp"
         android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
+        android:onClick="selectionarPapel"
         android:scaleType="fitCenter"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/textResult"
@@ -57,10 +58,11 @@
         android:id="@+id/imageButton2"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginEnd="24dp"
-        android:scaleType="fitCenter"
+        android:layout_marginEnd="16dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
+        android:onClick="selecionarPedra"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/imageButton"
         app:layout_constraintEnd_toStartOf="@+id/imageButton"
         app:layout_constraintTop_toTopOf="@+id/imageButton"
@@ -70,9 +72,10 @@
         android:id="@+id/imageButton3"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginStart="24dp"
-        android:scaleType="fitCenter"
+        android:layout_marginStart="16dp"
         android:background="@android:color/transparent"
+        android:onClick="selecionarTesoura"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/imageButton"
         app:layout_constraintStart_toEndOf="@+id/imageButton"
         app:layout_constraintTop_toTopOf="@+id/imageButton"
