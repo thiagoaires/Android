@@ -13,13 +13,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+            Obama obama = new Obama();
 
-        Conta contaThiago = new Conta();
+            obama.direitosDeveres();
+
+            System.out.println("ok");
 
 
-        contaThiago.depositar(200);
 
-        contaThiago.saque(120);
+//        Pessoa pessoinha = new Pessoa();
+//
+//        pessoinha.exibirDados("thiago");
+//        pessoinha.exibirDados("THHIAGO", 12);
+//
+//
+
+
+
+
+
+
+
+
+
+//        Conta contaThiago = new Conta();
+//
+//
+//        contaThiago.depositar(200);
+//
+//        contaThiago.saque(120);
 
 
 
