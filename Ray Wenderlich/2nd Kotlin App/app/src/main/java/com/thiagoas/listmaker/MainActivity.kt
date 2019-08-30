@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         listRecyclerView.adapter = ListSelectionRecyclerViewAdapter()
 
 
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
