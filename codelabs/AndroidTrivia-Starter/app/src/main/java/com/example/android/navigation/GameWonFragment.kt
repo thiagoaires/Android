@@ -16,10 +16,12 @@
 
 package com.example.android.navigation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -37,6 +39,29 @@ class GameWonFragment : Fragment() {
             it.findNavController()
                     .navigate(R.id.action_gameWonFragment_to_gameFragment)
         }
+
+        val args = GameWonFragmentArgs.fromBundle(arguments!!)
+        Toast.makeText(
+                context,
+                "numCorrect: ${args.numCorrect} numquestions: ${args.numQuestions}",
+                Toast.LENGTH_LONG
+                ).show()
+
+        setHasOptionsMenu(true)
         return binding.root
     }
+
+    private fun getShareIntent(): Intent {
+
+        val args = GameWonFragmentArgs.fromBundle(arguments!!)
+        val shareIntent = Intent(Intent.ACTION_SEND)
+
+        shareIntent.setType("text/plain")
+                .putExtra(Intent.EXTRA_TEXT, getString(R.string.share_success_text, args.numQuestions, args.numCorrect))
+
+        return shareIntent
+    }
+    
+
+    fun onCreateOptionsMenu() {}
 }
