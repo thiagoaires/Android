@@ -6,24 +6,26 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.thiagoas.listmaker.R
+import com.thiagoas.listmaker.sharedPreferences.TaskList
 
-class ListSelectionRecyclerViewAdapter(listTitles: Array<String>) : RecyclerView.Adapter<ListSelectionRecyclerViewAdapter.ListSelectionViewHolder>(){
+class ListSelectionRecyclerViewAdapter(val listTitles: ArrayList<TaskList>) : RecyclerView.Adapter<ListSelectionRecyclerViewAdapter.ListSelectionViewHolder>(){
 
-    var listTitles: Array<String>
 
-    init {
-        this.listTitles = listTitles
-    }
 
     override fun onBindViewHolder(holder: ListSelectionViewHolder, position: Int) {
         holder.listPosition.text = (position + 1).toString()
-        holder.listTitle.text = listTitles.get(position)
+        holder.listTitle.text = listTitles.get(position).name
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListSelectionViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_selection_view_holder, parent,false)
         return ListSelectionViewHolder(view)
+    }
+
+    fun addList(list: TaskList){
+        listTitles.add(list)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
