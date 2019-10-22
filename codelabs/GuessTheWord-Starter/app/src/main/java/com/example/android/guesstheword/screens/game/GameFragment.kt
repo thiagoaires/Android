@@ -54,6 +54,7 @@ class GameFragment : Fragment() {
         viewModel.score.observe(this, Observer { newScore ->
             binding.scoreText.text  = newScore.toString()
         })
+
         viewModel.word.observe(this, Observer { newWord ->
             binding.wordText.text = newWord
         })
@@ -61,9 +62,8 @@ class GameFragment : Fragment() {
         viewModel.eventGameFinish.observe(this, Observer<Boolean> {hasFinished ->
             if(hasFinished) gameFinished()
         })
-        binding.correctButton.setOnClickListener { onCorrect() }
-        binding.skipButton.setOnClickListener { onSkip() }
-        binding.endGameButton.setOnClickListener { onEndgame() }
+
+        binding.gameViewModel = viewModel
 
         return binding.root
 
@@ -75,18 +75,5 @@ class GameFragment : Fragment() {
         action.score = viewModel.score.value?:0
         NavHostFragment.findNavController(this).navigate(action)
         viewModel.onGameFinishComplete()
-    }
-
-    private fun onSkip() {
-        viewModel.onSkip()
-    }
-
-    private fun onCorrect() {
-        viewModel.onCorrect()
-
-    }
-
-    private fun onEndgame(){
-        gameFinished()
     }
 }
